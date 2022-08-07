@@ -5,6 +5,7 @@ package kumari.shweta.MessagingAPI.service;
  */
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,26 @@ public class ProfileService {
 	public List<Profile> getAllProfiles() {
 
 		return new ArrayList<Profile>(profiles.values());
+	}
+	
+	public List<Profile> getAllProfileForYear(int year){
+		List<Profile> profileList = new ArrayList<>();
+		Calendar calendar=Calendar.getInstance();
+		for(Profile profile : profiles.values()) {
+		
+			calendar.setTime(profile.getCreated());
+			if( calendar.get(Calendar.YEAR)==year) {
+				profileList.add(profile);
+			}
+		}
+		return profileList;
+	}
+	
+	public Profile addProfile(Profile profile) {
+    profile.setId(profiles.size()+1);
+	profiles.put(profile.getProfileName(), profile);
+	return profile;
+	
 	}
 	/*
 	 * public static void main(String arg[]) { ProfileService po= new
