@@ -24,13 +24,16 @@ public class ProfileCrudOperationResource {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Profile> getAllProfiles(@QueryParam("year")int year){
+	public List<Profile> getAllProfiles(@QueryParam("year") int year, @QueryParam("start") int start,
+			@QueryParam("size") int size) {
 		List<Profile> profileList;
-		if(year<=0) {
-			profileList=profileService.getAllProfiles();
-		
+		if (year > 0) {
+			profileList = profileService.getAllProfileForYear(year);
+
+		} else if (start >= 0 && size > 0) {
+			profileList = profileService.getAllMessagePaginated(start, size);
 		} else {
-			profileList=profileService.getAllProfileForYear(year);
+			profileList = profileService.getAllProfiles();
 		}
 		return profileList;
 	}

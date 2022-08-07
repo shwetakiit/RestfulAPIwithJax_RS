@@ -42,6 +42,15 @@ public class ProfileService {
 		return profileList;
 	}
 	
+	//Pagination for rest api data
+	public List<Profile> getAllMessagePaginated(int start,int size){
+	List<Profile> profileList= new ArrayList<>(profiles.values());
+	if(start+size>profileList.size()) {
+		return new ArrayList<Profile>();
+	}
+	return profileList.subList(start, start+size);
+	}
+	
 	public Profile addProfile(Profile profile) {
     profile.setId(profiles.size()+1);
 	profiles.put(profile.getProfileName(), profile);
