@@ -1,7 +1,10 @@
 package kumari.shweta.messageResource;
 
-import java.util.List;
+/**
+ * @author Shweta Kumari
+ */
 
+import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -16,43 +19,44 @@ import kumari.shweta.MessagingAPI.service.MessagesService;
 
 @Path("messagecrud")
 public class MessageCrudOperationResource {
-	MessagesService messagesService= new MessagesService();	
-@GET
-@Produces(MediaType.APPLICATION_JSON)
-public List<Message> getAllMessages(){
-	
-	return messagesService.getAllMessages();
-}
+	MessagesService messagesService = new MessagesService();
 
-@POST
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
-public Message addMessages(Message messages) {
-	return messagesService.addMessage(messages);
-}
-@GET
-@Path("/{messageId}")
-@Produces(MediaType.APPLICATION_JSON)
-public Message getMessage(@PathParam("messageId")long id) {
-	return messagesService.getMessage(id);
-	
-}
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Message> getAllMessages() {
+		return messagesService.getAllMessages();
+	}
 
-@PUT
-@Path("/{messageId1}")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
-public Message updateMessages(@PathParam("messageId1")long id,Message message) {
-	message.setId(id);
-	return messagesService.updateMessage(message);
-}
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Message addMessages(Message messages) {
+		return messagesService.addMessage(messages);
+	}
 
-@DELETE
-@Path("/{messageId}")
-@Produces(MediaType.APPLICATION_JSON)
-public void deleteMessage(@PathParam("messageId")long id) {
-	messagesService.removeMessage(id);
-	
-}
-	
+	@GET
+	@Path("/{messageId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Message getMessage(@PathParam("messageId") long id) {
+		return messagesService.getMessage(id);
+
+	}
+
+	@PUT
+	@Path("/{messageId1}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Message updateMessages(@PathParam("messageId1") long id, Message message) {
+		message.setId(id);
+		return messagesService.updateMessage(message);
+	}
+
+	@DELETE
+	@Path("/{messageId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public void deleteMessage(@PathParam("messageId") long id) {
+		messagesService.removeMessage(id);
+
+	}
+
 }

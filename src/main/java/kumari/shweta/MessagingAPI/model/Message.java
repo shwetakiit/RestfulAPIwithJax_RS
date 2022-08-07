@@ -1,4 +1,8 @@
 package kumari.shweta.MessagingAPI.model;
+/**
+ * @author Shweta Kumari
+ */
+
 
 import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
