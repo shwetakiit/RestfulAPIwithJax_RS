@@ -5,6 +5,7 @@ package kumari.shweta.messageResource;
 
 import java.util.List;
 
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -24,14 +25,13 @@ public class ProfileCrudOperationResource {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Profile> getAllProfiles(@QueryParam("year") int year, @QueryParam("start") int start,
-			@QueryParam("size") int size) {
+	public List<Profile> getAllProfiles(@BeanParam MessageFilterBean filterBean) {
 		List<Profile> profileList;
-		if (year > 0) {
-			profileList = profileService.getAllProfileForYear(year);
+		if (filterBean.getYear() > 0) {
+			profileList = profileService.getAllProfileForYear(filterBean.getYear());
 
-		} else if (start >= 0 && size > 0) {
-			profileList = profileService.getAllMessagePaginated(start, size);
+		} else if (filterBean.getStart() >= 0 && filterBean.getSize() > 0) {
+			profileList = profileService.getAllMessagePaginated(filterBean.getStart(), filterBean.getSize());
 		} else {
 			profileList = profileService.getAllProfiles();
 		}
