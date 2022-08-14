@@ -38,6 +38,7 @@ public class ProfileCrudOperationResource {
 		return profileList;
 	}
 	
+	/*
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
@@ -45,6 +46,6 @@ public class ProfileCrudOperationResource {
 		
 		return profileService.addProfile(profile);
 	}
-	
+	*/
 	
 }

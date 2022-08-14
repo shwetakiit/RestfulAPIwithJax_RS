@@ -1,4 +1,8 @@
 package kumari.shweta.MessagingAPI.Database;
+/**
+ * @author Shweta Kumari
+ */
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +19,7 @@ public class Databaseclass {
 	}
 	
 	public static Map<String,Profile> getProfiles(){
-		profiles.put("skumari", new Profile(1,"shweta","skumari",new Date()));
+	
 		return profiles;
 	}
 }
