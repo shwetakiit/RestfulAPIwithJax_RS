@@ -28,11 +28,13 @@ import kumari.shweta.MessagingAPI.model.Message;
 import kumari.shweta.MessagingAPI.service.MessagesService;
 
 @Path("messagecrud")
+@Produces(value= {MediaType.APPLICATION_JSON,MediaType.TEXT_XML})
+@Consumes(value= {MediaType.APPLICATION_JSON,MediaType.TEXT_XML})
 public class MessageCrudOperationResource {
 	MessagesService messagesService = new MessagesService();
 
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(value= {MediaType.APPLICATION_JSON,MediaType.TEXT_XML})
 	public List<Message> getAllMessages() {
 		return messagesService.getAllMessages();
 	}
@@ -82,15 +84,30 @@ public class MessageCrudOperationResource {
 	@GET
 	@Path("/{messageId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Message getMessage(@PathParam("messageId") long id) {
+	public Message getMessage(@PathParam("messageId") long id,@Context UriInfo uriInfo) {
 		
-		Message message= messagesService.getMessage(id);
+		Message message=messagesService.getMessage(id);
+		String url = getSelfURL(uriInfo, message);
+		String profileUrl=getProfileUrl(uriInfo, message);
 		if(message==null) {
 			throw new DataNotFoundException("Data not found at message id "+id);
 		}
+		message.addLink(url, "self");
+		message.addProfile(profileUrl, "profile");
 		return message;
 
 	}
+
+	private String getProfileUrl(UriInfo uriInfo, Message message) {
+		return uriInfo.getBaseUriBuilder().path(ProfileCrudOperationResource.class).path(message.getAuthor()).build().toString();
+	}
+
+	private String getSelfURL(UriInfo uriInfo, Message message) {
+		String url=uriInfo.getBaseUriBuilder().path(MessageCrudOperationResource.class).path(Long.toString(message.getId())).build().toString();
+		return url;
+	}
+
+
 
 	@PUT
 	@Path("/{messageId1}")
