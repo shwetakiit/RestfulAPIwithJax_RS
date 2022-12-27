@@ -3,15 +3,14 @@ package kumari.shweta.MessagingAPI.model;
  * @author Shweta Kumari
  */
 
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
-@XmlRootElement
 
+@XmlRootElement
 public class Message {
 	
 	private long id;
@@ -21,6 +20,11 @@ public class Message {
 	
 	List<Link> links= new ArrayList<>();
 	List<Profile> profiles= new ArrayList<>();
+	
+	/*
+	 * No -arg constructor is mandatory - If we getting result in json/xml
+	 * --required no -arg constructor to create Object
+	 */
 	
 	public Message() {
 		
@@ -74,10 +78,15 @@ public class Message {
 	profile.setProfileName("self");
 	profile.setId(11);
 	profile.setCreated(new Date());
-	
-	
-		
 	}
 	
-
+	@Override
+	public String toString() {
+		return "Message [id=" + id + ", message=" + message + ", author=" + author + ", links=" + links + ", profiles="
+				+ profiles + "]";
+	}
+	
+	
+	
+	
 }

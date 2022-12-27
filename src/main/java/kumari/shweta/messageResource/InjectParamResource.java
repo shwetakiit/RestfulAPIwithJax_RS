@@ -16,6 +16,8 @@ import javax.ws.rs.core.UriInfo;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class InjectParamResource {
+	
+	//http://localhost:9998/MessagingAPI/webapi/injectparam/annotations;param=shweta
 
 	@GET
 	@Path("annotations")
