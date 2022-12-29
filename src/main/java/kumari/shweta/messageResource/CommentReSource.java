@@ -20,7 +20,6 @@ import javax.ws.rs.POST;
  * Edit comment on Status
  * 
  */
-
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -31,7 +30,6 @@ import kumari.shweta.MessagingAPI.service.FaceBookStatusService;
 
 @Path("/")
 public class CommentReSource {
-
 	FaceBookStatusService statusService = new FaceBookStatusService();
 
 	@GET
@@ -61,19 +59,22 @@ public class CommentReSource {
 		return statusService.getAllFaceBookStatus();
 	}
 
-	// Post request with URI format :http://localhost:9998/MessagingAPI/webapi/status/1/statuscomment/
+	// Post request with URI format
+	// :http://localhost:9998/MessagingAPI/webapi/status/1/statuscomment/
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public FaceBookStatus addCommentForBookStatus(@PathParam("statusId") int statusId, Comment comment) {
 		return statusService.addComment(statusId, comment);
 	}
-	
+
+	// DELETE URI format :http://localhost:9998/MessagingAPI/webapi/status/1/statuscomment/1
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{commentId}")
-	public FaceBookStatus removeCommentFaceBookStatus(@PathParam("statusId") int statusId,@PathParam("commentId") int commentID) {
-		return statusService.removeComment(statusId,commentID);
+	public FaceBookStatus removeCommentFaceBookStatus(@PathParam("statusId") int statusId,
+			@PathParam("commentId") int commentID) {
+		return statusService.removeComment(statusId, commentID);
 	}
-	
+
 }

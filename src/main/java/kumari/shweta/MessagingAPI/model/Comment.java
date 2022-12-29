@@ -10,15 +10,14 @@ import java.util.Date;
  *
  */
 public class Comment {
-	
 	private int commentId;
 	String commentMessage;
 	String author;
 	Date createDate;
-	
+
 	public Comment() {
-		
 	}
+
 	public Comment(int commentId, String commentMessage, String author, Date createDate) {
 		this.commentId = commentId;
 		this.commentMessage = commentMessage;
@@ -57,11 +56,10 @@ public class Comment {
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
+
 	@Override
 	public String toString() {
 		return "Comment [commentId=" + commentId + ", commentMessage=" + commentMessage + ", author=" + author
 				+ ", createDate=" + createDate + "]";
 	}
-	
-	
 }
