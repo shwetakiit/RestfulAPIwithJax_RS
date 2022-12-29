@@ -31,6 +31,7 @@ public class InjectParamResource {
 	@Path("context")
 	public String getParamUsingContext(@Context UriInfo uriInfo,@Context HttpHeaders headers) {
 		String path=uriInfo.getAbsolutePath().toString();
-		return "Absoule path of API "+path+ "and headers data is "+headers;
+		System.out.println("Cookies value"+headers.getCookies().get("testCookie"));
+		return "Absoule path of API "+path+ "and headers data is "+headers.getCookies();
 	}
 }
