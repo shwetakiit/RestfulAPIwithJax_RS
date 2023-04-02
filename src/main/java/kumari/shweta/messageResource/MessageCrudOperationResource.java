@@ -162,7 +162,7 @@ public class MessageCrudOperationResource {
 	//Implementing Subresource 
 
 	@Path("/{messageId}/comments")
-	public CommenResource test() {
+	public CommenResource getCommentResource() {
 		return new CommenResource();
 		
 	}

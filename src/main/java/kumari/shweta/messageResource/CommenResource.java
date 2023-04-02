@@ -8,14 +8,21 @@ import javax.ws.rs.PathParam;
 @Path("/s")
 public class CommenResource {
 	
-	//http://localhost:9998/MessagingAPI/webapi/messagecrud/1/comments/
+	CommenResource() {}
 
-@GET
-@Path("/ss")
+	// http://localhost:9998/MessagingAPI/webapi/messagecrud/1/comments/
+	/* sub Resource of MessageCrudOperation" */
+	
+	@GET
+	public String getSubResource() {
+		return "Sub Resource of Message";
+	}
+
+	@GET
+	@Path("/ss")
 	public String test() {
 		return "New sub resource !!!";
 	}
-	
 	
 	//get with comment id of subresource 
 	
